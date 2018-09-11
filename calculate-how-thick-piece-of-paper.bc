@@ -1,0 +1,25 @@
+/* numbers precision */
+scale=4
+
+/* how many pages are after x foldings */
+define zlozenia (x) {
+                if (x <= 1) return (2);
+                return (zlozenia(x-1) * 2);
+}     
+
+/* from article on website I've found         */
+/* that folding page 5 times gives 1 cm thick */
+/* stack, so in meters it'll be:              */
+grb_kartki= 0.01/zlozenia(5)
+
+print "How many times you folded page?: "; ile = read()
+stos = zlozenia(ile) * grb_kartki
+if (stos > 999) {
+        print "\nPage is ", grb_kartki," meters thick, so stack after ", 
+               ile, " foldings will be ", stos/1000, " kilometers.\n"
+} else {
+        print "\nPage is ", grb_kartki," meters thick, so stack after ", 
+               ile, " foldings will be ", stos, " meters.\n"
+}
+quit
+
